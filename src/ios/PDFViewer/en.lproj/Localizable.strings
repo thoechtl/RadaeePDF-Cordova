@@ -61,7 +61,7 @@
 "Note" = "Note";
 "Search" = "Search";
 "Warning" = "Warning";
-"Find Over" = "Find Over";
+"Find Over" = "Suchbegriff nicht gefunden.";
 "Signature already exist. Do you want delete it?" = "Signature already exist. Do you want delete it?";
 "Delete" = "Delete";
 "Error" = "Error";

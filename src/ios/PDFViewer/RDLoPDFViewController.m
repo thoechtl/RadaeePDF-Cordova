@@ -603,9 +603,10 @@
 
 - (void)OnLongPressed:(float)x :(float)y
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(didLongPressOnPage:atPoint:)]) {
-        [_delegate didLongPressOnPage:(pagenow) atPoint:CGPointMake(x, y)];
-    }
+    // advantage apps: prevent selecting text after long press on link! Not needed in this app.
+    // if (_delegate && [_delegate respondsToSelector:@selector(didLongPressOnPage:atPoint:)]) {
+    //     [_delegate didLongPressOnPage:(pagenow) atPoint:CGPointMake(x, y)];
+    // }
 }
 
 - (void)OnSingleTapped:(float)x :(float)y
@@ -660,8 +661,8 @@
     
     if( !found )
     {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Waring"
-                                   message:@"Find Over"
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Suchbegriff nicht gefunden."
+                                   message:nil
                                    preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
@@ -1864,7 +1865,7 @@
     m_searchBar.delegate = self;
     m_searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     m_searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    m_searchBar.placeholder = @"Search";
+    m_searchBar.placeholder = @"Begriff oder Seite";
     m_searchBar.keyboardType = UIKeyboardTypeDefault;
     m_searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
@@ -1875,10 +1876,20 @@
     [self.view addSubview:m_searchBar];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    toolBar.searchButton.enabled = (searchText.length > 0);
-}
+- (bool)searchForPageNumber: (NSString *)text {
+    // search for page-number if search-text has intValue
+    NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    if ([text rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
+        // text consists only of the digits 0 through 9
+        int pageNumber = [text intValue] - 1;
+        // jump to page if searched page-number is within total page-count
+         if (pageNumber <= m_doc.pageCount) {
+             [self didSelectItem:pageNumber];
+            return true;
+         }
+     }
+    return false;
+ }
 
 - (void)showDocReadonlyAlert
 {
@@ -2213,7 +2224,12 @@
     [m_searchBar resignFirstResponder];
     if (m_searchBar.text.length > 40)
         return;
-    
+
+    // search for page-number if search-text has intValue
+    if ([self searchForPageNumber:text]) {
+        return;
+    }
+    // else do standard search
     if (SEARCH_LIST == 1) {
         int i = [[RDExtendedSearch sharedInstance] getPrevPageFromCurrentPage:pagenow];
         
@@ -2243,6 +2259,12 @@
 {
     NSString *text = m_searchBar.text;
     [m_searchBar resignFirstResponder];
+    
+    // search for page-number if search-text has intValue
+    if ([self searchForPageNumber:text]) {
+        return;
+    }
+    // else do standard search
     if (m_searchBar.text.length > 40){
         return ;
     }
@@ -2334,7 +2356,12 @@
     [m_SearchBar resignFirstResponder];
     if (m_SearchBar.text.length > 40)
         return;
-    
+
+    // search for page-number if search-text has intValue
+    if ([self searchForPageNumber:m_SearchBar.text]) {
+        return;
+    }
+    // else do standard search
     if (SEARCH_LIST == 1) {
         [self showSearchList];
     } else {
@@ -2865,7 +2892,7 @@
 {
     m_Thumbview.hidden = !GLOBAL.g_navigation_mode;
     m_slider.hidden = GLOBAL.g_navigation_mode;
-    [pageNumLabel setHidden:false];
+    [pageNumLabel setHidden:true];
     toolBar.hidden = NO;
     [self prefersStatusBarHidden];
     [m_searchBar setHidden:NO];
