@@ -305,7 +305,7 @@
     Global_setAnnotFont("Helvetica");
     
     
-    Global_setAnnotTransparency(0x200040FF);
+    Global_setAnnotTransparency(0x2037687B);
     [[RDVGlobal sharedInstance] setup]; 
 }
 
@@ -328,7 +328,7 @@
     _g_rect_color = 0xFF000000;
     _g_line_color = 0xFF000000;
     _g_ink_color = 0xFF000000;
-    _g_sel_color = 0x400000C0;
+    _g_sel_color = 0x4037687B;
     _g_oval_color = 0xFF000000;
     _g_line_annot_fill_color = 0xFF000000;
     _g_rect_annot_fill_color = 0;
@@ -337,13 +337,13 @@
     _g_annot_underline_clr = 0xFF0000FF;
     _g_annot_strikeout_clr = 0xFFFF0000;
     _g_annot_squiggly_clr = 0xFF00FF00;
-    _g_thumbview_label_color = 0xFFFF0000;
+    _g_thumbview_label_color = 0x00000000;
     
     _g_line_annot_style1 = 0;
     _g_line_annot_style2 = 1;
     _g_readerview_bg_color = 0xFFBFBFBF;
     _g_thumbview_height = 99;
-    _g_find_primary_color = 0x400000C0;
+    _g_find_primary_color = 0x4037687B;
     
     _g_static_scale = false;
     _g_curl_enabled = false;
