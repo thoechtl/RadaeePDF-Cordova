@@ -212,7 +212,7 @@
     pageNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, [self barHeightDistance], 65, 30)];
     pagenow = pageno;
     pageNumLabel.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.4];
-    pageNumLabel.textColor = [UIColor whiteColor];
+    pageNumLabel.textColor = [UIColor clearColor];
     pageNumLabel.adjustsFontSizeToFitWidth = YES;
     pageNumLabel.textAlignment= NSTextAlignmentCenter;
     pageNumLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -518,7 +518,7 @@
 #pragma mark - Slider
 
 - (void)setSliderText:(int)value {
-    sliderLabel.text = [NSString stringWithFormat:@"%i/%i", value, m_doc.pageCount];
+    // sliderLabel.text = [NSString stringWithFormat:@"%i/%i", value, m_doc.pageCount];
 }
 
 -(void)OnSliderValueChange:(UISlider *)slider
@@ -1245,17 +1245,17 @@
                                    {
                                        [self showViewModeTableView];
                                    }];
-        UIAlertAction *addBookMark = [UIAlertAction actionWithTitle:NSLocalizedString(@"Add Bookmark", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+        UIAlertAction *addBookMark = [UIAlertAction actionWithTitle:NSLocalizedString(@"Lesezeichen hinzufügen", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                       {
                                           [self composeFile];
                                       }];
         
-        UIAlertAction *bookMarkList = [UIAlertAction actionWithTitle:NSLocalizedString(@"Bookmark List", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+        UIAlertAction *bookMarkList = [UIAlertAction actionWithTitle:NSLocalizedString(@"Lesezeichen", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                        {
                                            [self bookmarkList];
                                        }];
         
-        UIAlertAction *viewMenu =  [UIAlertAction actionWithTitle:NSLocalizedString(@"View Menu", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+        UIAlertAction *viewMenu =  [UIAlertAction actionWithTitle:NSLocalizedString(@"Inhaltsverzeichnis", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                     {
                                         [self viewMenu];
                                     }];
@@ -1279,7 +1279,7 @@
                                         [self sharePDF];
                                     }];
         
-        UIAlertAction *cancel =  [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+        UIAlertAction *cancel =  [UIAlertAction actionWithTitle:NSLocalizedString(@"Abbrechen", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                                   {
             [self->moreItemsContainer dismissViewControllerAnimated:YES completion:nil];
                                   }];
@@ -1293,16 +1293,16 @@
         [printPDF setValue:[(_printImage) ? _printImage : [UIImage imageNamed:@"btn_print"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forKey:@"image"];
         [sharePDF setValue:[(_shareImage) ? _shareImage : [UIImage imageNamed:@"btn_share"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forKey:@"image"];
         
-        [moreItemsContainer addAction:viewMode];
+        // [moreItemsContainer addAction:viewMode];
         [moreItemsContainer addAction:addBookMark];
         [moreItemsContainer addAction:bookMarkList];
         [moreItemsContainer addAction:viewMenu];
-        [moreItemsContainer addAction:meta];
-        [moreItemsContainer addAction:savePDF];
-        [moreItemsContainer addAction:printPDF];
-        [moreItemsContainer addAction:sharePDF];
+        // [moreItemsContainer addAction:meta];
+        // [moreItemsContainer addAction:savePDF];
+        // [moreItemsContainer addAction:printPDF];
+        // [moreItemsContainer addAction:sharePDF];
         [moreItemsContainer addAction:cancel];
-        moreItemsContainer.view.tintColor = [self getTintColor];
+        moreItemsContainer.view.tintColor = [self getBarColor];
         
         [self presentViewController:moreItemsContainer animated:YES completion:nil];
     }
@@ -1312,15 +1312,15 @@
         moreTVContainer.modalPresentationStyle = UIModalPresentationPopover;
         [moreTVContainer setPreferredContentSize:CGSizeMake(300, 320)];
         moreTVContainer.delegate = self;
-        moreTVContainer.viewModeImage = _viewModeImage;
+        // moreTVContainer.viewModeImage = _viewModeImage;
         moreTVContainer.addBookmarkImage = _addBookmarkImage;
         moreTVContainer.bookmarkImage = _bookmarkImage;
         moreTVContainer.outlineImage = _outlineImage;
-        moreTVContainer.metaImage = _metaImage;
-        moreTVContainer.saveImage = _saveImage;
-        moreTVContainer.printImage = _printImage;
-        moreTVContainer.shareImage = _shareImage;
-        moreTVContainer.tintColor = [self getTintColor];
+        // moreTVContainer.metaImage = _metaImage;
+        // moreTVContainer.saveImage = _saveImage;
+        // moreTVContainer.printImage = _printImage;
+        // moreTVContainer.shareImage = _shareImage;
+        moreTVContainer.tintColor = [self getBarColor];
         UIPopoverPresentationController *popPresenter = [moreTVContainer
                                                          popoverPresentationController];
         popPresenter.barButtonItem = toolBar.moreButton;
