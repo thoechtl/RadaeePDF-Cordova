@@ -46,7 +46,7 @@
         NSDictionary *attributes = @{NSFontAttributeName :font};
         if(m_has_pdfform)
         {
-            NSString *sval = @"Perform";
+            NSString *sval = @"Ausführen";
             CGSize tsize = [sval boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
             tsize.width += 8;
             view = [MenuAnnotOp createItem :0 :width :tsize.width :sval :font];
@@ -68,14 +68,14 @@
         }
         if(m_has_remove)
         {
-            NSString *sval = @"Remove";
-            CGSize tsize = [sval boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
-            tsize.width += 8;
-            view = [MenuAnnotOp createItem :2 :width :tsize.width :sval :font];
-            tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-            [view addGestureRecognizer:tap];
-            [self addSubview:view];
-            width += tsize.width;
+            // NSString *sval = @"Remove";
+            // CGSize tsize = [sval boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
+            // tsize.width += 8;
+            // view = [MenuAnnotOp createItem :2 :width :tsize.width :sval :font];
+            // tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+            // [view addGestureRecognizer:tap];
+            // [self addSubview:view];
+            // width += tsize.width;
         }
         if(m_has_property)
         {
