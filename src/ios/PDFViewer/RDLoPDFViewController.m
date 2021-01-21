@@ -2874,8 +2874,8 @@
     toolBar.bar.translucent = NO;
     
     //set tint
-    toolBar.bar.tintColor = m_searchBar.tintColor = drawToolbar.tintColor = m_slider.tintColor = [self getTintColor];
-    toolBar.backgroundColor = toolBar.bar.barTintColor = m_searchBar.barTintColor = drawToolbar.barTintColor = [self getBarColor];
+    toolBar.bar.tintColor = m_searchBar.tintColor = m_searchBar.barTintColor  = drawToolbar.tintColor = m_slider.tintColor = [self getTintColor];
+    toolBar.backgroundColor = toolBar.bar.barTintColor = drawToolbar.barTintColor = [self getBarColor];
     
     if (@available(iOS 13.0, *)) {
         
