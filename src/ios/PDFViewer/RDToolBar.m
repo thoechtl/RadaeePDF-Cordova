@@ -65,7 +65,7 @@
     
     UIImage *moreImg = (_moreImage) ? _moreImage : [UIImage imageNamed:@"btn_more"];
     _moreButton = [[UIBarButtonItem alloc] initWithImage:moreImg style:UIBarButtonItemStylePlain target:self action:@selector(moreClick)];
-    normalToolBarArray = [[NSMutableArray alloc] initWithObjects:_searchButton,drawButton,_selectTextButton,undoButton,redoButton,gridButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], _moreButton,nil];
+    normalToolBarArray = [[NSMutableArray alloc] initWithObjects: drawButton,_selectTextButton,undoButton,redoButton,gridButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], _searchButton, _moreButton,nil];
     
     UIImage *rightImg = (_nextImage) ? _nextImage : [UIImage imageNamed:@"btn_right"];
     UIBarButtonItem *nextbutton=[[UIBarButtonItem alloc]initWithImage:rightImg style:UIBarButtonItemStylePlain target:self action:@selector(nextword)];
@@ -98,7 +98,7 @@
     
     performToolBarArray = [[NSArray alloc]initWithObjects:playbutton,deletebutton,propbutton,cancelbtn,nil];
     
-    NSMutableArray *hiddenItems = [NSMutableArray arrayWithObjects: [NSNumber numberWithBool:_hideSearchImage], [NSNumber numberWithBool:_hideDrawImage], [NSNumber numberWithBool:_hideSelImage], [NSNumber numberWithBool:_hideUndoImage], [NSNumber numberWithBool:_hideRedoImage], [NSNumber numberWithBool:_hideGridImage], [NSNumber numberWithBool:NO], [NSNumber numberWithBool:_hideMoreImage], nil];
+    NSMutableArray *hiddenItems = [NSMutableArray arrayWithObjects: [NSNumber numberWithBool:_hideDrawImage], [NSNumber numberWithBool:_hideSelImage], [NSNumber numberWithBool:_hideUndoImage], [NSNumber numberWithBool:_hideRedoImage], [NSNumber numberWithBool:_hideGridImage], [NSNumber numberWithBool:NO], [NSNumber numberWithBool:_hideSearchImage], [NSNumber numberWithBool:_hideMoreImage], nil];
     
     NSMutableArray *objectsToRemove = [NSMutableArray array];
     for (int i = 0; i < hiddenItems.count; i++) {
