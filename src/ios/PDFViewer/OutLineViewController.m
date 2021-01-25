@@ -32,10 +32,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"Outline", @"Localizable");
+    self.title = NSLocalizedString(@"Inhalt", @"Localizable");
     CGRect boundsc = [[UIScreen mainScreen]bounds];
     int cwidth = boundsc.size.width;
     int cheight = boundsc.size.height;
+ 
+    // Set navigation bar title color to white
+    [[UINavigationBar appearance] setTitleTextAttributes:
+            [NSDictionary dictionaryWithObjectsAndKeys:
+                [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+    
     CGRect nav_rect = [self.navigationController.navigationBar bounds];
 
     self.outlineTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0,cwidth, cheight-nav_rect.size.height-20) style:UITableViewStylePlain];
