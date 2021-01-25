@@ -65,8 +65,11 @@
     
     UIImage *moreImg = (_moreImage) ? _moreImage : [UIImage imageNamed:@"btn_more"];
     _moreButton = [[UIBarButtonItem alloc] initWithImage:moreImg style:UIBarButtonItemStylePlain target:self action:@selector(moreClick)];
-    normalToolBarArray = [[NSMutableArray alloc] initWithObjects: drawButton,_selectTextButton,undoButton,redoButton,gridButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], _searchButton, _moreButton,nil];
     
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    normalToolBarArray = [[NSMutableArray alloc] initWithObjects: drawButton,_selectTextButton,undoButton,redoButton,gridButton, space, _searchButton, _moreButton,nil];
+       
     UIImage *rightImg = (_nextImage) ? _nextImage : [UIImage imageNamed:@"btn_right"];
     UIBarButtonItem *nextbutton=[[UIBarButtonItem alloc]initWithImage:rightImg style:UIBarButtonItemStylePlain target:self action:@selector(nextword)];
     nextbutton.width = ICON_WIDTH;
