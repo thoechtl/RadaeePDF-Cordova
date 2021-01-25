@@ -81,7 +81,8 @@
     UIImage *removeImg = (_removeImage) ? _removeImage : [UIImage imageNamed:@"btn_annot_remove"];
     UIBarButtonItem *searchCancelbtn=[[UIBarButtonItem alloc]initWithImage:removeImg style:UIBarButtonItemStylePlain target:self action:@selector(searchCancel)];
     searchCancelbtn.width = ICON_WIDTH;
-    searchToolBarArray = [[NSArray alloc]initWithObjects:_searchButton,prevbutton,nextbutton,searchCancelbtn,nil];
+//    searchToolBarArray = [[NSArray alloc]initWithObjects:_searchButton,prevbutton,nextbutton,searchCancelbtn,nil];
+    searchToolBarArray = [[NSArray alloc]initWithObjects: searchCancelbtn, space, prevbutton, nextbutton, nil];
     
     UIImage *performImg = (_performImage) ? _performImage : [UIImage imageNamed:@"btn_perform"];
     UIBarButtonItem *playbutton=[[UIBarButtonItem alloc]initWithImage:performImg style:UIBarButtonItemStylePlain target:self action:@selector(performAnnot)];
