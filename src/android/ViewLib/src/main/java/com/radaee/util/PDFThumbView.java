@@ -178,8 +178,8 @@ public class PDFThumbView extends View implements PDFViewListener {
         else
             m_paint.setTextSize(m_thumb.vGetWinH() / 5);
         m_paint.setTextAlign(Align.CENTER);
-        canvas.drawText(String.valueOf(vpage.GetPageNo() + 1),
-                (left + right) / 2, (top + bottom) / 2, m_paint);
+        // advantage:apps, disable thumbnail text
+        //canvas.drawText(String.valueOf(vpage.GetPageNo() + 1), (left + right) / 2, (top + bottom) / 2, m_paint);
     }
 
     public void OnPDFSelecting(Canvas canvas, int[] rect1, int[] rect2) {}
