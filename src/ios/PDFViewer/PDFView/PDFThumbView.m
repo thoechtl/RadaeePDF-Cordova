@@ -173,7 +173,7 @@
         float left = (float)vpage.x - self.contentOffset.x * m_scale_pix;
         float top = (float)vpage.y - self.contentOffset.y * m_scale_pix;
         CGRect rect = CGRectMake(scale * left, scale * top, scale * vpage.w, scale * vpage.h);
-        CGFloat clr[4] = {0, 0, 1, 0.25};
+        CGFloat clr[4] = {55.0/255.0, 104.0/255.0, 123.0/255.0, 0.4}; // selected thumbnail color
         CGContextSetFillColor(ctx, clr);
         CGContextFillRect(ctx, rect);
     }
