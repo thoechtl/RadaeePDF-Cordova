@@ -78,7 +78,7 @@
     UIBarButtonItem *prevbutton=[[UIBarButtonItem alloc]initWithImage:leftImg style:UIBarButtonItemStylePlain target:self action:@selector(prevword)];
     prevbutton.width = ICON_WIDTH;
     
-    UIImage *removeImg = (_removeImage) ? _removeImage : [UIImage imageNamed:@"btn_back"];
+    UIImage *removeImg = (_removeImage) ? _removeImage : [UIImage imageNamed:@"btn_close"];
     UIBarButtonItem *searchCancelbtn=[[UIBarButtonItem alloc]initWithImage:removeImg style:UIBarButtonItemStylePlain target:self action:@selector(searchCancel)];
     searchCancelbtn.width = ICON_WIDTH;
 //    searchToolBarArray = [[NSArray alloc]initWithObjects:_searchButton,prevbutton,nextbutton,searchCancelbtn,nil];
