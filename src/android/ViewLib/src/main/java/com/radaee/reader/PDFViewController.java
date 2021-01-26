@@ -796,20 +796,30 @@ public class PDFViewController implements OnClickListener, SeekBar.OnSeekBarChan
     }
 
     private void activateSearch(int direction) {
-        String val = edit_find.getText().toString();
-        if (!TextUtils.isEmpty(val)) {
-            ((InputMethodManager) m_parent.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
-                    .hideSoftInputFromWindow(edit_find.getWindowToken(), 0);
-            val = bidiFormatCheck(val);
-            if (val.equals(m_find_str))
-                m_view.PDFFind(direction);
-            else {
-                m_find_str = val;
-                m_view.PDFFindStart(val, Global.g_case_sensitive, Global.g_match_whole_word);
-                m_view.PDFFind(direction);
-            }
-        }
-    }
+      String val = edit_find.getText().toString();
+      if (!TextUtils.isEmpty(val)) {
+          ((InputMethodManager) m_parent.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
+                  .hideSoftInputFromWindow(edit_find.getWindowToken(), 0);
+          if (val.trim().matches("[0-9]+")) {
+              try {
+                  int pos = Integer.parseInt(val) - 1;
+                  m_view.PDFGotoPage(pos);
+              }catch (Exception e ){
+                  e.printStackTrace();
+              }
+
+          } else {
+              val = bidiFormatCheck(val);
+              if (val.equals(m_find_str))
+                  m_view.PDFFind(direction);
+              else {
+                  m_find_str = val;
+                  m_view.PDFFindStart(val, false, false);
+                  m_view.PDFFind(direction);
+              }
+          }
+      }
+  }
 
     void savePDF() {
         if (m_view.PDFSave()) {
