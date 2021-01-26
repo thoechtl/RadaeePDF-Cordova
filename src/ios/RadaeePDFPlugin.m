@@ -840,9 +840,9 @@
 {
     pdfPath = [pdfPath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
     NSString *tempName = [[pdfPath lastPathComponent] stringByDeletingPathExtension];
-    NSString *tempFile = [tempName stringByAppendingFormat:@"%d%@",page,@".bookmark"];
+    NSString *tempFile = [tempName stringByAppendingFormat:@"_%d%@",page,@".bookmark"];
     
-    NSString *fileContent = [NSString stringWithFormat:@"%i",page];
+    NSString *fileContent = [NSString stringWithFormat:@"%i:::%@",page,label];
     NSString *BookMarkDir = [pdfPath stringByDeletingLastPathComponent];
     
     NSString *bookMarkFile = [BookMarkDir stringByAppendingPathComponent:tempFile];
