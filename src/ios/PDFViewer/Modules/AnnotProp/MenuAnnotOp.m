@@ -46,14 +46,17 @@
         NSDictionary *attributes = @{NSFontAttributeName :font};
         if(m_has_pdfform)
         {
-            NSString *sval = @"Ausführen";
-            CGSize tsize = [sval boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
-            tsize.width += 8;
-            view = [MenuAnnotOp createItem :0 :width :tsize.width :sval :font];
-            tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-            [view addGestureRecognizer:tap];
-            [self addSubview:view];
-            width += tsize.width;
+            // immediately follow link to page without confirmation popup
+            [self tapAction: tap];
+
+            // NSString *sval = @"Öffnen";
+            // CGSize tsize = [sval boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
+            // tsize.width += 8;
+            // view = [MenuAnnotOp createItem :0 :width :tsize.width :sval :font];
+            // tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+            // [view addGestureRecognizer:tap];
+            // [self addSubview:view];
+            // width += tsize.width;
         }
         if(m_has_edit)
         {
