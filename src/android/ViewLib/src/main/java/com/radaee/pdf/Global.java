@@ -816,9 +816,12 @@ public class Global
 	 */
 	public static void default_config()
 	{
-		selColor = 0x400000C0;// selection color
-		findPrimaryColor = 0x400000FF;// find primary color
-		findSecondaryColor = 0x40404040;// find secondary color
+		selColor = 0x4037687b;// selection color
+		findPrimaryColor = 0x4037687b;// find primary color
+		findSecondaryColor = 0xFFBFBFBF;// find secondary color
+		thumbViewBgColor = 0xFFBFBFBF;
+		thumbGridBgColor = 0xFFBFBFBF;
+		readerViewBgColor = 0xFFBFBFBF;
 		fling_dis = 1.0f;// 0.5-2
         fling_speed = 0.1f;// 0.05 - 0.2
 		def_view = 0;// 0,1,2,3,4,5,6 0:vertical 1:horizon 2:curl effect 3:single
