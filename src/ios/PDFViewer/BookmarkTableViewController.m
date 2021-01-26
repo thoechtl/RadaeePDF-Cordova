@@ -24,7 +24,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Schließen" style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
     }
 }
 
@@ -60,11 +60,17 @@
     }
     
     NSArray *arr = [_items objectAtIndex:indexPath.row];
+    NSString *str = [NSString stringWithFormat:@"%@",[arr objectAtIndex:0]];
+    NSArray *namesArr = [str componentsSeparatedByString:@":::"];
     
     int pageno = [[arr objectAtIndex:0] intValue];
     pageno++;
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"Page: %i", pageno];
+      
+    if (namesArr.count > 1) {
+      cell.textLabel.text = [NSString stringWithFormat:@"Seite %i: %@", pageno, [namesArr objectAtIndex:1]];
+    } else {
+      cell.textLabel.text = [NSString stringWithFormat:@"Seite %i", pageno];
+    }
     
     return cell;
 }

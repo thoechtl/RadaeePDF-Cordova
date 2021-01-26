@@ -34,6 +34,8 @@
 #import "DlgAnnotPropLine.h"
 #import "DlgAnnotPropIcon.h"
 
+#import "RadaeePDFPlugin.h"
+
 #define SYS_VERSION [[[UIDevice currentDevice]systemVersion] floatValue]
 #define THUMB_HEIGHT 99
 
@@ -1247,7 +1249,7 @@
                                    }];
         UIAlertAction *addBookMark = [UIAlertAction actionWithTitle:NSLocalizedString(@"Lesezeichen hinzufügen", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                       {
-                                          [self composeFile];
+                                          [self addPageToBookMarks];
                                       }];
         
         UIAlertAction *bookMarkList = [UIAlertAction actionWithTitle:NSLocalizedString(@"Lesezeichen", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
@@ -1338,7 +1340,7 @@
             [self showViewModeTableView];
             break;
         case 1:
-            [self composeFile];
+            [self addPageToBookMarks];
             break;
         case 2:
             [self bookmarkList];
@@ -1809,38 +1811,53 @@
     }];
 }
 
-- (NSString *)composeFile
+-(void)addPageToBookMarks {
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Name eingeben"
+                                  message:@""
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+      textField.placeholder = @"";
+    }];
+
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * action) {
+                                                 NSArray * textfields = alert.textFields;
+                                                 UITextField * textField = textfields[0];
+                                                 [self composeFile:textField.text];
+                                               }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Abbrechen" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:ok];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)composeFile:(NSString *)text
 {
     NSString *pdfpath = [GLOBAL.g_pdf_path stringByAppendingPathComponent:GLOBAL.g_pdf_name];
     RDVPos pos;
     [m_view vGetPos:&pos];
     int pageno = pos.pageno;
-    NSString *tempName = [[pdfpath lastPathComponent] stringByDeletingPathExtension];
-    NSString *tempFile = [tempName stringByAppendingFormat:@"_%d%@",pageno,@".bookmark"];
     
-    NSString *fileContent = [NSString stringWithFormat:@"%i",pageno];
-    NSString *BookMarkDir = [pdfpath stringByDeletingLastPathComponent];
-    
-    NSString *bookMarkFile = [BookMarkDir stringByAppendingPathComponent:tempFile];
-    
-    if (![[NSFileManager defaultManager] isWritableFileAtPath:BookMarkDir]) {
-        return @"Cannot add bookmark";
+    NSString *result = [RadaeePDFPlugin addToBookmarks:pdfpath page:pageno label:text];
+
+    NSString *str1=NSLocalizedString(@"Alert", @"Localizable");
+    NSString *str2=result;
+
+    NSString *str3=NSLocalizedString(@"OK", @"Localizable");
+    if ([str2 isEqualToString:@"Add BookMark Success!"]) {
+      
     }
-    
-    NSLog(@"%@", bookMarkFile);
-    
-    if(![[NSFileManager defaultManager] fileExistsAtPath:bookMarkFile])
-    {
-        [[NSFileManager defaultManager]createFileAtPath:bookMarkFile contents:nil attributes:nil];
-        NSFileHandle *fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:bookMarkFile];
-        [fileHandle seekToEndOfFile];
-        [fileHandle writeData:[fileContent dataUsingEncoding:NSUTF8StringEncoding]];
-        [fileHandle closeFile];
-        
-        return @"Add BookMark Success!";
-    }
-    else {
-        return @"BookMark Already Exist";
+    else{
+      UIAlertController *alert = [UIAlertController alertControllerWithTitle:str1 message:str2 preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction *action1 = [UIAlertAction actionWithTitle:str3 style:UIAlertActionStyleDefault handler:nil];
+      [alert addAction:action1];
+      [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
