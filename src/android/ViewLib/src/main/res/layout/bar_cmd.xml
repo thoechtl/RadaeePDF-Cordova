@@ -46,16 +46,6 @@
         android:src="@drawable/btn_select" />
 
     <ImageView
-        android:id="@+id/btn_outline"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_margin="2dp"
-        android:layout_toRightOf="@+id/btn_select"
-        android:clickable="true"
-        android:src="@drawable/btn_outline" />
-
-    <ImageView
         android:id="@+id/btn_undo"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -86,16 +76,16 @@
         android:clickable="true"
         android:src="@drawable/ic_more" />
 
-    <!--
     <ImageView
-        android:id="@+id/btn_add_bookmark"
+        android:id="@+id/btn_outline"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_margin="2dp"
-        android:layout_toRightOf="@+id/btn_redo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:clickable="true"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/btn_outline" />
 
     <ImageView
         android:id="@+id/btn_show_bookmarks"
@@ -103,18 +93,29 @@
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_margin="2dp"
-        android:layout_toRightOf="@+id/btn_add_bookmark"
+        android:layout_toLeftOf="@+id/btn_outline"
         android:clickable="true"
         android:src="@drawable/ic_bookmarks" />
-
     <ImageView
-        android:id="@+id/btn_print"
+        android:id="@+id/btn_add_bookmark"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_margin="2dp"
-        android:layout_toRightOf="@+id/btn_show_bookmarks"
+        android:layout_toLeftOf="@+id/btn_show_bookmarks"
         android:clickable="true"
-        android:src="@drawable/btn_print" /> -->
+        android:src="@drawable/ic_add" />
+
+
+    <!--
+        <ImageView
+            android:id="@+id/btn_print"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="2dp"
+            android:layout_toRightOf="@+id/btn_show_bookmarks"
+            android:clickable="true"
+            android:src="@drawable/btn_print" /> -->
 
 </RelativeLayout>

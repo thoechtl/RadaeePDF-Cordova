@@ -31,7 +31,7 @@ public class RadaeePDFManager implements RadaeePluginCallback.PDFReaderListener 
     public static final int CPU_BASED_LAYOUT = 1;
 
     public static boolean sHideSaveButton = true;
-    public static boolean sHideMoreButton = false;
+    public static boolean sHideMoreButton = true;
     public static boolean sHideUndoButton = true;
     public static boolean sHideRedoButton = true;
     public static boolean sHideShareButton = true;
