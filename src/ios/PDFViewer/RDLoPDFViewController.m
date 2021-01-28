@@ -168,7 +168,7 @@
         [_delegate didShowReader];
     }
     
-    [self pageNumLabelInit:pagenow];
+//    [self pageNumLabelInit:pagenow];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -214,7 +214,7 @@
     pageNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, [self barHeightDistance], 65, 30)];
     pagenow = pageno;
     pageNumLabel.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.4];
-    pageNumLabel.textColor = [UIColor clearColor];
+    pageNumLabel.textColor = [UIColor grayColor];
     pageNumLabel.adjustsFontSizeToFitWidth = YES;
     pageNumLabel.textAlignment= NSTextAlignmentCenter;
     pageNumLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -1532,7 +1532,7 @@
     b.items = bookmarks;
     b.delegate = self;
     
-    // fix issue on iPad!
+    // issue on iPad!
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 //
 //        //bookmarkPopover = [[UIPopoverController alloc] initWithContentViewController:b];
