@@ -1511,8 +1511,25 @@
 
 - (void)bookmarkList
 {
+    NSMutableArray *bookmarks = [self loadBookmarkForPdf:GLOBAL.g_pdf_path withPath:YES];
+    
+    // no bookmarks found
+    if (bookmarks.count == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Keine Lesezeichen gefunden", nil)
+                                                                       message:NSLocalizedString(@"", nil)
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"OK", nil)
+                             style:UIAlertActionStyleDefault
+                             handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
+    // bookmarks found
     BookmarkTableViewController *b = [[BookmarkTableViewController alloc] init];
-    b.items = [self loadBookmarkForPdf:GLOBAL.g_pdf_path withPath:YES];
+    b.items = bookmarks;
     b.delegate = self;
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
