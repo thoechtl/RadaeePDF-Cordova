@@ -39,9 +39,21 @@
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:closeImg style:UIBarButtonItemStylePlain target:self action:@selector(closeClick)];
     closeButton.width = ICON_WIDTH;
     
+    UIImage *addBookmarkImg = (_addBookmarkImage) ? _addBookmarkImage : [UIImage imageNamed:@"btn_add_bookmark"];
+    _addBookmarkButton = [[UIBarButtonItem alloc]initWithImage:addBookmarkImg style:UIBarButtonItemStylePlain target:self action:@selector(addBookmarkClick)];
+    _addBookmarkButton.width = BUTTON_WIDTH;
+    
+    UIImage *listBookmarksImg = (_addBookmarkImage) ? _addBookmarkImage : [UIImage imageNamed:@"btn_list_bookmarks"];
+    _listBookmarksButton = [[UIBarButtonItem alloc]initWithImage:listBookmarksImg style:UIBarButtonItemStylePlain target:self action:@selector(listBookmarksClick)];
+    _listBookmarksButton.width = BUTTON_WIDTH;
+    
+    UIImage *outlineImg = (_outlineImage) ? _outlineImage : [UIImage imageNamed:@"btn_outline"];
+    _outlineButton = [[UIBarButtonItem alloc]initWithImage:outlineImg style:UIBarButtonItemStylePlain target:self action:@selector(outlineClick)];
+    _outlineButton.width = BUTTON_WIDTH;
+    
     UIImage *searchImg = (_searchImage) ? _searchImage : [UIImage imageNamed:@"btn_search"];
     _searchButton = [[UIBarButtonItem alloc]initWithImage:searchImg style:UIBarButtonItemStylePlain target:self action:@selector(searchClick)];
-    _searchButton.width = ICON_WIDTH;
+    _searchButton.width = BUTTON_WIDTH;
     
     UIImage *drawImg = (_drawImage) ? _drawImage : [UIImage imageNamed:@"btn_ink"];
     UIBarButtonItem *drawButton = [[UIBarButtonItem alloc]initWithImage:drawImg style:UIBarButtonItemStylePlain target:self action:@selector(drawModeClick)];
@@ -68,7 +80,7 @@
     
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    normalToolBarArray = [[NSMutableArray alloc] initWithObjects: drawButton,_selectTextButton,undoButton,redoButton,gridButton, space, _searchButton, _moreButton,nil];
+    normalToolBarArray = [[NSMutableArray alloc] initWithObjects: drawButton,_selectTextButton,undoButton,redoButton,gridButton, space, _searchButton, _addBookmarkButton, _listBookmarksButton, _outlineButton, nil];
        
     UIImage *rightImg = (_nextImage) ? _nextImage : [UIImage imageNamed:@"btn_right"];
     UIBarButtonItem *nextbutton=[[UIBarButtonItem alloc]initWithImage:rightImg style:UIBarButtonItemStylePlain target:self action:@selector(nextword)];
@@ -146,6 +158,24 @@
 {
     if (self.m_delegate) {
         [_m_delegate searchView];
+    }
+}
+- (void)addBookmarkClick;
+{
+    if (self.m_delegate) {
+        [_m_delegate addPageToBookMarks];
+    }
+}
+- (void)listBookmarksClick;
+{
+    if (self.m_delegate) {
+        [_m_delegate bookmarkList];
+    }
+}
+- (void)outlineClick;
+{
+    if (self.m_delegate) {
+        [_m_delegate viewMenu];
     }
 }
 - (void)drawModeClick;

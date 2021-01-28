@@ -8,12 +8,16 @@
 #import <UIKit/UIKit.h>
 
 #define ICON_WIDTH 30
+#define BUTTON_WIDTH 45
 
 @protocol RDToolBarDelegate
 
 // normalbar delegate
 - (void)closeView;
 - (void)searchView;
+- (void)addPageToBookMarks;
+- (void)bookmarkList;
+- (void)viewMenu;
 - (void)showDrawModeTableView;
 - (void)selectIsStarting;
 - (void)stopSelect;
@@ -39,10 +43,16 @@
 @property (nonatomic, strong) UIBarButtonItem *selectTextButton;
 @property (nonatomic, strong) UIBarButtonItem *moreButton;
 @property (nonatomic, strong) UIBarButtonItem *searchButton;
+@property (nonatomic, strong) UIBarButtonItem *addBookmarkButton;
+@property (nonatomic, strong) UIBarButtonItem *listBookmarksButton;
+@property (nonatomic, strong) UIBarButtonItem *outlineButton;
 @property (nonatomic,weak) id<RDToolBarDelegate> m_delegate;
 
 @property (strong, nonatomic) UIImage *closeImage;
 @property (strong, nonatomic) UIImage *searchImage;
+@property (strong, nonatomic) UIImage *addBookmarkImage;
+@property (strong, nonatomic) UIImage *listBookmarksImage;
+@property (strong, nonatomic) UIImage *outlineImage;
 @property (strong, nonatomic) UIImage *gridImage;
 @property (strong, nonatomic) UIImage *deleteImage;
 @property (strong, nonatomic) UIImage *doneImage;
