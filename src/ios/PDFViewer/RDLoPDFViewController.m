@@ -1532,28 +1532,30 @@
     b.items = bookmarks;
     b.delegate = self;
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        
-        //bookmarkPopover = [[UIPopoverController alloc] initWithContentViewController:b];
-        //bookmarkPopover.popoverContentSize = CGSizeMake(300, 44 * b.items.count);
-        
-        //[bookmarkPopover presentPopoverFromBarButtonItem:toolBar.moreButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        b.modalPresentationStyle = UIModalPresentationPopover;
-        b.delegate = self; 
-        b.preferredContentSize = CGSizeMake(320, (44 * 4) + 10);
-        
-        UIPopoverPresentationController *pop = b.popoverPresentationController;
-        pop.permittedArrowDirections = UIPopoverArrowDirectionUp;
-        pop.barButtonItem = toolBar.moreButton;
-        
-        [self presentViewController:b animated:YES completion:nil];
-    }
-    else
-    {
+    // fix issue on iPad!
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//
+//        //bookmarkPopover = [[UIPopoverController alloc] initWithContentViewController:b];
+//        //bookmarkPopover.popoverContentSize = CGSizeMake(300, 44 * b.items.count);
+//
+//        //[bookmarkPopover presentPopoverFromBarButtonItem:toolBar.moreButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//        b.modalPresentationStyle = UIModalPresentationPopover;
+//        b.delegate = self;
+//        b.preferredContentSize = CGSizeMake(320, (44 * 4) + 10);
+//
+//        UIPopoverPresentationController *pop = b.popoverPresentationController;
+//        pop.sourceView = self;
+//        pop.permittedArrowDirections = UIPopoverArrowDirectionUp;
+//        pop.barButtonItem = toolBar.moreButton;
+//
+//        [self presentViewController:b animated:YES completion:nil];
+//    }
+//    else
+//    {
         b_outline = true;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:b];
         [self presentViewController:nav animated:YES completion:nil];
-    }
+//    }
 }
 
 -(void)didSelectItem:(int)pageno {
